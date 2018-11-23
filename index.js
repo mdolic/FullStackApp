@@ -19,7 +19,7 @@ passport.use(
 
 //route handler
 app.get('/auth/google', passport.authenticate('google',{
-    scope:['profile','email']
+    scope:['profile','email'] //asks for acces to user info and email
     })
 );
 
