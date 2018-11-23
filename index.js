@@ -23,6 +23,8 @@ app.get('/auth/google', passport.authenticate('google',{
     })
 );
 
+app.get('/auth/google/callback',passport.authenticate('google'));
+
 //localhost:5000
 const PORT = process.env.PORT || 5000; //heroku assigned to port otherwise local 5000
 
