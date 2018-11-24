@@ -1,7 +1,7 @@
 
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const keys = require('./config/keys');
+const keys = require('../config/keys');
 
 
 passport.use(
@@ -17,3 +17,4 @@ passport.use(
     }
     )
 ); // new instance of passport js strategy
+
