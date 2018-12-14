@@ -24,19 +24,15 @@ passport.use(
     callbackURL: '/auth/google/callback', //sends user back from google
     proxy: true
 },
-    (accessToken, refreshToken, profile, done) =>{
-        User.findOne({googleId: profile.id})
-        .then((existingUser)=>{
-            if(existingUser){
-                //we have a record
-                done(null, existingUser );
-            }else{
-                //record does not exist, make new record
-                new User({googleId: profile.id})
-                .save() //profile comes from google
-                .then(user =>done(null, user));
-            }
-        });
+    async (accessToken, refreshToken, profile, done) =>{
+      const existingUser = await User.findOne({googleId: profile.id})
+
+      if(existingUser){
+            return done(null, existingUser );
+        }
+
+        const user = await  new User({googleId: profile.id}).save() //profile comes from google
+       done(null, user);
     }
 )
 ); // new instance of passport js strategy
